@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MardocheDespagne_MAUI_demo.Models"
+             xmlns:viewModels="clr-namespace:MardocheDespagne_MAUI_demo.ViewModels"
+             x:DataType="viewModels:MainPageViewModel"
+             x:Class="MardocheDespagne_MAUI_demo.Views.MainPage"
+             Title="Informations Personnes">
+
+    <VerticalStackLayout Margin="10">
+        <Label Text="Liste Personnes" FontSize="23" TextColor="Black" />
+
+        <Grid RowDefinitions="*, auto" RowSpacing="5" Margin="5">
+
+            <CollectionView ItemsSource="{Binding Personnes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Personne">
+
+                        <Frame Margin="7" Padding="7">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Photo -->
+                                
+                                <Image Source="{Binding Photo, TargetNullValue='C:/Users/mardo/Desktop/23/Dev_C#/SQLiteDemoMAUI-master/SQLiteDemoMAUI-master/Resources/Images/user.png'}" WidthRequest="60" HeightRequest="60" Grid.RowSpan="3" Margin="0,0,10,0" />
+                                <!-- Prénom et Nom -->
+                                <HorizontalStackLayout Grid.Column="1" Grid.Row="0" Spacing="3">
+                                    <Label Text="{Binding FirstName}" FontSize="15" FontAttributes="Bold"/>
+                                    <Label Text="{Binding LastName}" FontSize="15" FontAttributes="Bold" />
+                                </HorizontalStackLayout>
+
+                                <!-- Email -->
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Email}" Grid.RowSpan="2" />
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}},Path=ActionCommand}"
+                                CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+      
+        <Grid HorizontalOptions="CenterAndExpand">
+            <!--<Button Text="Add Student" Command="{Binding AddUpdateStudentCommand}" />-->
+            <Button Grid.Row="1" Margin="10"
+                    Text="Nouvelle Personne"
+                    BorderWidth="3"
+                    BorderColor="Black"
+                    BackgroundColor="Gray" 
+                    HorizontalOptions="Fill" 
+                    Command="{Binding AddUpdatePersonCommand}"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

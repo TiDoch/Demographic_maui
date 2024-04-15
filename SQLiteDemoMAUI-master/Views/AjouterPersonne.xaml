@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MardocheDespagne_MAUI_demo.Views.AjouterPersonne"
+             Title="Ajouter / Update Personne">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="10" Spacing="20">
+
+        <VerticalStackLayout>
+            <Image Source="C:/Users/mardo/Desktop/23/Dev_C#/SQLiteDemoMAUI-master/SQLiteDemoMAUI-master/Resources/Images/user.png" WidthRequest="70" HeightRequest="70" />
+        </VerticalStackLayout>
+                
+        <VerticalStackLayout>
+            <Label Text="Nom"  />
+            <Entry Text="{Binding Persone.FirstName}" Placeholder="Entrer votre nom" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Prenom" />
+            <Entry  Text="{Binding Persone.LastName}" Placeholder="Entrer votre prenom" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Label Text="Date de Naissance" />
+            <Entry  Text="{Binding Persone.Ddn}" Placeholder="Entrer votre Date de Naissance" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Label Text="Email" />
+            <Entry  Text="{Binding Persone.Email}" Placeholder="Entrer votre Email" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Telephone" />
+            <Entry Keyboard="Numeric" Text="{Binding Persone.Numero}" Placeholder="Entrer votre numero" />
+            <BoxView HeightRequest="0.8" Color="Gray"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Button x:Name="btnTakePicture" BorderWidth="3" BorderColor="Black" Text="Photo" Command="{Binding TakePictureCommand}" />
+        </VerticalStackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Button Text="Ajouter" BorderWidth="3" BorderColor="Black"  Command="{Binding AddUpdatePersonneCommand}" HorizontalOptions="FillAndExpand" />
+            <Button Text="Annuler" BorderWidth="3" BorderColor="Black"  Command="{Binding ReturnToMainPageCommand}" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+
+
+    </StackLayout>
+</ContentPage>
